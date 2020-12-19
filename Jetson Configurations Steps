@@ -1,0 +1,26 @@
+Step 1: Need to install pip for Python which is a helper program to easily install Python libraries. Follow this command :
+
+sudo apt-get install python3-pip
+
+Step 2: Now we need to make both the hardwares PCA9685 and Jetson Nano talk to each other and the way its done is through I2C Bus. Not only for the servo motors but also for any sensors we will be integrating in future lessons. Hence we need to install a Python library called Circuit Python. Follow the below command :
+
+sudo pip3 install adafruit-circuitpython-servokit
+
+
+
+Step 3: Now we need to set some permissions in Jetson Nano to access GPIO pins communicating with I2C Bus. Follow the below commands one at a time :
+
+sudo usermod -aG i2c anbu 
+sudo groupadd -f -r gpio
+sudo usermod -a -G gpio anbu
+sudo cp /opt/nvidia/jetson-gpio/etc/99-gpio.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules && sudo udevadm trigger
+
+Step 4 : Now you need to reboot your Jetson Nano by executing the below command.
+
+sudo reboot now
+
+Step 5 : We will not try to execute I2C detect from Jetson GPIO pins connected to external devices like PCA9685 board, type the below commands :
+
+sudo i2cdetect -y -r 1
+
