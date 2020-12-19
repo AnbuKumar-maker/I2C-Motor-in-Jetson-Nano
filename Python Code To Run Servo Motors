@@ -1,0 +1,25 @@
+import time
+from adafruit_servokit import ServoKit
+kit=ServoKit(channels=16)
+A=180
+B=90
+kit.servo[0].angle=A
+kit.servo[1].angle=B
+kit.servo[2].angle=A
+kit.servo[3].angle=B
+
+
+while True:
+    
+    for i in range(0,180):
+        kit.servo[0].angle=i
+        kit.servo[1].angle=i
+        kit.servo[2].angle=i
+        kit.servo[3].angle=i
+        time.sleep(.05)
+    for i in range(180,0,-1):
+        kit.servo[0].angle=i
+        kit.servo[1].angle=i
+        kit.servo[2].angle=i
+        kit.servo[3].angle=i
+        time.sleep(.05)
